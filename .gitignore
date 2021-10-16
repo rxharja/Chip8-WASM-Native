@@ -1,0 +1,6 @@
+# directories
+.vscode/
+DSL/
+
+#hidden files
+.DS_STORE
