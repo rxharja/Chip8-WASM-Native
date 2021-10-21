@@ -3,6 +3,9 @@
 
 #include "config.h"
 
+// Chip 8 has 4096 bytes of memory
+// 0x000 to 0x1FF are reserved for the interpreter
+// 0x200 to 0xFFF is the program / data space
 struct chip8_memory 
 {
     unsigned char memory[CHIP8_MEMORY_SIZE];
