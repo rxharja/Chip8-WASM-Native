@@ -6,6 +6,7 @@
 #include "chip8_registers.h"
 #include "chip8_stack.h"
 #include "chip8_keyboard.h"
+
 struct Chip8 {
     struct chip8_memory memory;
     struct chip8_stack stack;
