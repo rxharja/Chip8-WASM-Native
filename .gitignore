@@ -1,6 +1,7 @@
 # directories
 .vscode/
 DSL/
+.cache/
 
 #hidden files
 .DS_STORE
