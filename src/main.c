@@ -1,16 +1,20 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "SDL2/SDL.h"
 #include "chip8.h"
+#include "chip8_keyboard.h"
 
 int main(int argc, char **argv)
 {
   struct Chip8 chip8;
-
-  chip8_stack_push(&chip8, 0xff); 
-  chip8_stack_push(&chip8, 0xaa); 
   
-  printf("%x\n", chip8_stack_pop(&chip8));
-  printf("%x\n", chip8_stack_pop(&chip8));
+  chip8_keyboard_down(&chip8.keyboard, 0x0f);
+  bool is_down = chip8_key_is_down(&chip8.keyboard, 0x0f);
+  printf("%i\n", is_down);
+
+  chip8_keyboard_up(&chip8.keyboard, 0x0f);
+  is_down = chip8_key_is_down(&chip8.keyboard, 0x0f);
+  printf("%i\n", is_down);
 
   SDL_Init(SDL_INIT_EVERYTHING);
 
