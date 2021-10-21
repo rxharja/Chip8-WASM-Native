@@ -4,3 +4,6 @@ DSL/
 
 #hidden files
 .DS_STORE
+
+#files for building and clangd
+compile_commands.json

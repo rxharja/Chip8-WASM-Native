@@ -1,4 +1,4 @@
-INCLUDES=-I /usr/local/include/SDL -I ./include 
+INCLUDES=-I /usr/local/include/SDL2 -I ./include 
 FLAGS=-g -D_GNU_SOURCE=1 -D_THREAD_SAFE
 OBJECTS=./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./build/chip8.o
 TESTS=./tests/chip8_keyboard_tests.o
