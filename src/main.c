@@ -14,8 +14,8 @@ const char keyboard_map[CHIP8_TOTAL_KEYS] = {
 int main(int argc, char **argv)
 {
   struct Chip8 chip8;
-  printf("%x\n", chip8_keyboard_map(keyboard_map, 0xff)); 
-  
+
+  chip8_init(&chip8);
   SDL_Init(SDL_INIT_EVERYTHING);
 
   SDL_Window *window = SDL_CreateWindow(
