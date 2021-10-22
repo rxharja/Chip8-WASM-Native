@@ -1,5 +1,7 @@
 # directories
 .vscode/
+bin/
+build/
 DSL/
 .cache/
 
