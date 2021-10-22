@@ -1,6 +1,6 @@
+#include <assert.h>
 #include "config.h"
 #include "chip8_screen.h"
-#include <assert.h>
 
 static void chip8_screen_ensure_bounds(int x, int y)
 {

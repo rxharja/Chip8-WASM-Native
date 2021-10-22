@@ -7,7 +7,7 @@
 struct Chip8;
 
 // the stack is an array of 16 16 bit values
-// used to store teh address that the interpreter
+// used to store the address that the interpreter
 // should return when finished with a subroutine.
 struct chip8_stack {
     unsigned short stack[CHIP8_TOTAL_STACK_DEPTH];
