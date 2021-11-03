@@ -26,6 +26,8 @@ all: ${OBJECTS} ${TESTS}
 
 test:
 	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./tests/chip8_keyboard_tests.c -o ./tests/chip8_keyboard_tests.o
+	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./tests/chip8_stack_tests.c -o ./tests/chip8_stack_tests.o
+	./tests/chip8_stack_tests.o
 	./tests/chip8_keyboard_tests.o
 
 clean:
