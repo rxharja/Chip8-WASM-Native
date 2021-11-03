@@ -18,7 +18,9 @@ int main(int argc, char **argv)
 
   chip8_init(&chip8);
 
-  chip8_screen_draw_sprite(&chip8.screen, 0, 0, &chip8.memory.memory[0x00], 5);
+  for (int k = 0; k <= 30; k+=5) {
+    chip8_screen_draw_sprite(&chip8.screen, 2 * k, 0, &chip8.memory.memory[0x00 + k], 5);
+  }
 
   SDL_Init(SDL_INIT_EVERYTHING);
 
