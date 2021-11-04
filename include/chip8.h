@@ -7,6 +7,7 @@
 #include "chip8_stack.h"
 #include "chip8_keyboard.h"
 #include "chip8_screen.h"
+#include <stddef.h>
 
 struct Chip8 {
     struct chip8_memory memory;
@@ -17,4 +18,7 @@ struct Chip8 {
 };
 
 void chip8_init(struct Chip8* chip8);
+void chip8_load(struct Chip8* chip8, const char* buf, size_t size);
+void chip8_exec(struct Chip8* chip8, unsigned short opcode);
+
 #endif
