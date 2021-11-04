@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include "toot.h"
 #include "SDL.h"
 #include "chip8.h"
 #include "chip8_keyboard.h"
@@ -17,6 +19,7 @@ int main(int argc, char **argv)
   struct Chip8 chip8;
 
   chip8_init(&chip8);
+  chip8.registers.sound_timer = 30;
 
   for (int k = 0; k <= 30; k+=5) {
     chip8_screen_draw_sprite(&chip8.screen, 2 * k, 0, &chip8.memory.memory[0x00 + k], 5);
@@ -89,6 +92,19 @@ int main(int argc, char **argv)
     }
 
     SDL_RenderPresent(renderer);
+
+    if (chip8.registers.delay_timer > 0)
+    {
+      usleep(100);
+      chip8.registers.delay_timer -= 1;
+      printf("Delaying %i\n ", chip8.registers.delay_timer);
+    }
+
+    if (chip8.registers.sound_timer > 0)
+    {
+      toot(3000, 100 * chip8.registers.sound_timer);
+      chip8.registers.sound_timer = 0;
+    }
   }
   
 out:

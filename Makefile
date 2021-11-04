@@ -1,6 +1,6 @@
 INCLUDES=-I /usr/local/include/SDL2 -I ./include 
 FLAGS=-g -D_GNU_SOURCE=1 -D_THREAD_SAFE
-OBJECTS=./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./build/chip8.o ./build/chip8_screen.o
+OBJECTS=./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./build/chip8.o ./build/chip8_screen.o ./build/toot.o
 TESTS=./tests/chip8_keyboard_tests.o
 
 all: ${OBJECTS} ${TESTS}
@@ -23,6 +23,9 @@ all: ${OBJECTS} ${TESTS}
 
 ./build/chip8_screen.o:src/chip8_screen.c
 	gcc ${FLAGS} ${INCLUDES} ./src/chip8_screen.c -c -o ./build/chip8_screen.o
+
+./build/chip8_screen.o:src/toot.c
+	gcc ${FLAGS} ${INCLUDES} ./src/toot.c -c -o ./build/toot.o
 
 test:
 	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./tests/chip8_keyboard_tests.c -o ./tests/chip8_keyboard_tests.o
