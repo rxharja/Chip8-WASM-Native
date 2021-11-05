@@ -4,9 +4,6 @@ OBJECTS=./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./
 TESTS=./tests/chip8_keyboard_tests.o
 
 all: ${OBJECTS} 
-	echo "Running Tests"
-	make test
-
 	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./src/main.c -L /usr/local/lib -o ./bin/main -lSDL2main -lSDL2
 
 ./build/chip8_memory.o:src/chip8_memory.c
@@ -28,6 +25,8 @@ all: ${OBJECTS}
 	gcc ${FLAGS} ${INCLUDES} ./src/toot.c -c -o ./build/toot.o
 
 test:
+	echo "Running Tests"
+	make all
 	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./tests/chip8_keyboard_tests.c -o ./tests/chip8_keyboard_tests.o
 	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./tests/chip8_stack_tests.c -o ./tests/chip8_stack_tests.o
 	gcc ${FLAGS} ${INCLUDES} ${OBJECTS} ./tests/chip8_memory_tests.c -o ./tests/chip8_memory_tests.o
