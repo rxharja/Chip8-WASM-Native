@@ -59,10 +59,6 @@ int main(int argc, const char **argv)
 
   chip8_load(&chip8, buf, size);
 
-  for (int k = 0; k <= 30; k+=5) {
-    chip8_screen_draw_sprite(&chip8.screen, 2 * k, 0, &chip8.memory.memory[0x00 + k], 5);
-  }
-
   SDL_Init(SDL_INIT_EVERYTHING);
 
   SDL_Window *window = SDL_CreateWindow(
@@ -145,9 +141,8 @@ int main(int argc, const char **argv)
     }
 
     unsigned short opcode = chip8_memory_get_short(&chip8.memory, chip8.registers.PC);
-    chip8_exec(&chip8, opcode);
     chip8.registers.PC += 2;
-    printf("%x\n", opcode);
+    chip8_exec(&chip8, opcode);
   }
   
 out:
