@@ -58,7 +58,6 @@ int main(int argc, const char **argv)
   struct Chip8 chip8;
   chip8_init(&chip8);
   chip8_load(&chip8, buf, size);
-
   chip8_keyboard_set_map(&chip8.keyboard, keyboard_map);
   SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -129,21 +128,20 @@ int main(int argc, const char **argv)
 
     SDL_RenderPresent(renderer);
 
-    if (chip8.registers.delay_timer > 0)
-    {
+    if (chip8.registers.delay_timer > 0) {
       usleep(100);
       chip8.registers.delay_timer -= 1;
-      printf("Delaying %i\n ", chip8.registers.delay_timer);
     }
 
-    if (chip8.registers.sound_timer > 0)
-    {
+    if (chip8.registers.sound_timer > 0) {
       toot(3000, 100 * chip8.registers.sound_timer);
       chip8.registers.sound_timer = 0;
     }
 
     unsigned short opcode = chip8_memory_get_short(&chip8.memory, chip8.registers.PC);
+
     chip8.registers.PC += 2;
+
     chip8_exec(&chip8, opcode);
   }
   

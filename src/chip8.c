@@ -39,6 +39,8 @@ void chip8_load(struct Chip8* chip8, const char* buf, size_t size)
 {
   assert(size + CHIP8_PROGRAM_LOAD_ADDRESS < CHIP8_MEMORY_SIZE);
   memcpy(&chip8->memory.memory[CHIP8_PROGRAM_LOAD_ADDRESS], buf, size);
+  chip8->registers.PC = CHIP8_PROGRAM_LOAD_ADDRESS;
+  printf("%x\n", chip8->registers.PC);
 }
 
 static char chip8_wait_for_keypress(struct Chip8* chip8) 
@@ -253,8 +255,9 @@ static void chip8_exec_extended(struct Chip8* chip8, unsigned short opcode)
 
     // 9xy0 - SNE Vx, Vy; skip next instruction if Vx != Vy
     case 0x9000:
-      chip8->registers.PC += (chip8->registers.V[x] != chip8->registers.V[y]) 
-        ? 2 : 0;
+    if (chip8->registers.V[x] != chip8->registers.V[y]) {
+      chip8->registers.PC += 2;
+    }
     break;
 
     // Annn - LD I, addr: set I = nnn
@@ -276,7 +279,7 @@ static void chip8_exec_extended(struct Chip8* chip8, unsigned short opcode)
     // Dxyn - DRW Vx, Vy, nibble. Draws n-byte sprite to screen
     case 0xD000:
     {
-      const unsigned char* sprite = &chip8->memory.memory[chip8->registers.I];
+      const char* sprite = (const char*)&chip8->memory.memory[chip8->registers.I];
       chip8->registers.V[0x0f] = chip8_screen_draw_sprite(&chip8->screen, chip8->registers.V[x], chip8->registers.V[y], sprite, n);
     }
     break;
@@ -286,14 +289,16 @@ static void chip8_exec_extended(struct Chip8* chip8, unsigned short opcode)
       switch (opcode & 0x00ff) {
         // EX9E - SKP Vx, skip next instruction if key with value of Vx pressed
         case 0x9E:
-          chip8->registers.PC += (chip8_key_is_down(&chip8->keyboard, chip8->registers.V[x])) 
-            ? 2 : 0;
+          if (chip8_key_is_down(&chip8->keyboard, chip8->registers.V[x])) {
+            chip8->registers.PC += 2;
+          }
         break;
 
         // EXA1 SKNP Vx, skip next instruction if key with val of Vx is not pressed
         case 0xA1:
-          chip8->registers.PC += (chip8_key_is_down(&chip8->keyboard, chip8->registers.V[x])) 
-            ? 0 : 2;
+          if (!chip8_key_is_down(&chip8->keyboard, chip8->registers.V[x])) {
+            chip8->registers.PC += 2;
+          }
         break;
       }
     } 
