@@ -129,7 +129,7 @@ int main(int argc, const char **argv)
     SDL_RenderPresent(renderer);
 
     if (chip8.registers.delay_timer > 0) {
-      usleep(100);
+      /* usleep(100); */
       chip8.registers.delay_timer -= 1;
     }
 
