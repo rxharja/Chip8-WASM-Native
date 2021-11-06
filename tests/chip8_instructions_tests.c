@@ -4,6 +4,19 @@
 #include "../include/config.h"
 #include "../include/chip8.h"
 
+
+/*
+ * CPU Instruction Tests
+ * Author: Redon Xharja
+ *
+ * Instruction sets doing something visual or 
+ * simple like setting a register are not tested
+ *
+ * Instruction sets doing bitwise operations of any kind
+ * are tested
+ *
+ */
+
 // Test:
 // 00E0 CLS
 // clear screen

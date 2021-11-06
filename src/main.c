@@ -7,18 +7,6 @@
 #include "chip8_keyboard.h"
 #include "chip8_screen.h"
 
-/*
- * CPU Instruction Tests
- * Author: Redon Xharja
- *
- * Instruction sets doing something visual or 
- * simple like setting a register are not tested
- *
- * Instruction sets doing bitwise operations of any kind
- * are tested
- *
- */
-
 const char keyboard_map[CHIP8_TOTAL_KEYS] = {
   SDLK_0, SDLK_1, SDLK_2, SDLK_3, 
   SDLK_4, SDLK_5, SDLK_6, SDLK_7, 
@@ -48,8 +36,10 @@ int main(int argc, const char **argv)
 
   // seek to the end of the file
   fseek(f, 0, SEEK_END);
+
   // find position and set it to the size
   long size = ftell(f);
+
   // return back to start of file to proceed reading
   fseek(f, 0, SEEK_SET);
 
@@ -68,6 +58,7 @@ int main(int argc, const char **argv)
   struct Chip8 chip8;
   chip8_init(&chip8);
   chip8_load(&chip8, buf, size);
+
   chip8_keyboard_set_map(&chip8.keyboard, keyboard_map);
   SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -77,7 +68,8 @@ int main(int argc, const char **argv)
       SDL_WINDOWPOS_UNDEFINED,
       CHIP8_WIDTH * CHIP8_WINDOW_SCALE,
       CHIP8_HEIGHT * CHIP8_WINDOW_SCALE,
-      SDL_WINDOW_SHOWN);
+      SDL_WINDOW_SHOWN
+  );
 
   SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_TEXTUREACCESS_TARGET);
   while (1)
