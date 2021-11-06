@@ -134,7 +134,7 @@ int main(int argc, const char **argv)
     }
 
     if (chip8.registers.sound_timer > 0) {
-      toot(3000, 100 * chip8.registers.sound_timer);
+      toot(2000, 10 * chip8.registers.sound_timer);
       chip8.registers.sound_timer = 0;
     }
 
