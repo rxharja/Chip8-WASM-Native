@@ -88,7 +88,7 @@ int main(int argc, const char **argv)
   renderer = SDL_CreateRenderer(window, -1, SDL_TEXTUREACCESS_TARGET);
 
 #ifdef __EMSCRIPTEN__
-  emscripten_set_main_loop(renderLoop, 9999, 0);
+  emscripten_set_main_loop(renderLoop, 0, 1);
 #else
   while (1) { renderLoop(); }
 #endif
@@ -166,10 +166,20 @@ static void renderLoop()
       chip8.registers.sound_timer = 0;
     }
 
+#ifdef __EMSCRIPTEN__
+    for (int i = 0; i < 7; i++) {
+      unsigned short opcode = chip8_memory_get_short(&chip8.memory, chip8.registers.PC);
+
+      chip8.registers.PC += 2;
+
+      chip8_exec(&chip8, opcode);
+    }
+#else
     unsigned short opcode = chip8_memory_get_short(&chip8.memory, chip8.registers.PC);
 
     chip8.registers.PC += 2;
 
     chip8_exec(&chip8, opcode);
+#endif
 
 }
