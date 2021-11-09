@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="Chip8.css" />
+    <title>Chip8 Emulator</title>
+  </head>
+  <body>
+    <div id="computer">
+      <div id="border-out">
+        <div id="border-in">
+          <div id="monitor">
+            <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div id="keyboard">
+        <div id="slot"></div>
+      </div>
+    </div>
+
+    <div id="games">
+      <div id="floppy"></div>
+      <p id="PONG" onClick="render(this.id)">Pong</p>
+      <p id="PONG2" onClick="render(this.id)">Pong 2</p>
+      <p id="INVADERS" onClick="render(this.id)">Space Invaders</p>
+      <p id="MERLIN" onClick="render(this.id)">Merlin</p>
+    </div>
+
+    <script type='text/javascript'>
+      let Module;
+
+      const reset = () => {
+        Module = {
+          preRun: [],
+          postRun: [],
+          canvas: (function() {
+            var canvas = document.getElementById('canvas');
+            return canvas;
+          })(),
+        };
+      }
+      
+      const render = (id) => {
+        Module = null;
+        reset(Module);
+        Module.arguments = [`./bin/c8games/${id}`];
+        initModule(Module);
+      }
+
+    </script>
+    
+    <script type="module">
+      import initModule from "./Chip8.js";
+      window.initModule = initModule;
+    </script>
+        
+  </body>
+</html>
+
+

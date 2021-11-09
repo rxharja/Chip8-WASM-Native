@@ -27,7 +27,7 @@ all: ${OBJECTS}
 	gcc -O3 ${FLAGS} ${INCLUDES} ./src/toot.c -c -o ./build/toot.o
 
 web: ${WASM_OBJECTS}
-	emcc ${FLAGS} ${INCLUDES} ${WASM_OBJECTS} ${EMCC_OPTIONS} ./src/main.c -o ./bin/Chip8.html --preload-file ./bin/c8games/ --use-preload-plugins
+	emcc ${FLAGS} ${INCLUDES} ${WASM_OBJECTS} ${EMCC_OPTIONS} ./src/main.c -o ./wasm/Chip8.html --preload-file ./bin/c8games/ --use-preload-plugins
 
 ./build/chip8_memory.html:src/chip8_memory.c
 	emcc -O3 ${FLAGS} ${INCLUDES} ./src/chip8_memory.c -c -o ./build/chip8_memory.html

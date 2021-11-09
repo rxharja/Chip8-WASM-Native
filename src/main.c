@@ -97,6 +97,12 @@ int main(int argc, const char **argv)
 
 static void renderLoop()
 {
+#ifdef __EMSCRIPTEN__
+    // 7 clock cycles per refresh seems to be the sweet spot for 
+    // emulation running WASM
+    for (int i = 0; i < 7; i++) {
+#endif
+
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
@@ -166,20 +172,13 @@ static void renderLoop()
       chip8.registers.sound_timer = 0;
     }
 
-#ifdef __EMSCRIPTEN__
-    for (int i = 0; i < 7; i++) {
       unsigned short opcode = chip8_memory_get_short(&chip8.memory, chip8.registers.PC);
 
       chip8.registers.PC += 2;
 
       chip8_exec(&chip8, opcode);
+#ifdef __EMSCRIPTEN__
     }
-#else
-    unsigned short opcode = chip8_memory_get_short(&chip8.memory, chip8.registers.PC);
-
-    chip8.registers.PC += 2;
-
-    chip8_exec(&chip8, opcode);
 #endif
 
 }
