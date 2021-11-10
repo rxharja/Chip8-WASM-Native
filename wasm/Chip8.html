@@ -7,26 +7,170 @@
     <title>Chip8 Emulator</title>
   </head>
   <body>
-    <div id="computer">
-      <div id="border-out">
-        <div id="border-in">
-          <div id="monitor">
-            <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+
+    <div class="macintosh" aria-label="1984 Macintosh illustration">
+      <div class="monitor">
+        <div class="monitor-inner">
+          <div class="screen-cutout">
+            <div class="screen">
+              <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+            </div>
+          </div>
+          <div class="logo">
+          </div>
+          <div class="opening">
+            <div class="opening-inner">
+            </div>
           </div>
         </div>
       </div>
-
-      <div id="keyboard">
-        <div id="slot"></div>
+      <div class="foot">
+        <div class="inset"></div>
+        <div class="cable-container">
+          <div class="cable-hole"></div>
+        </div>
       </div>
     </div>
 
     <div id="games">
-      <div id="floppy"></div>
-      <p id="PONG" onClick="render(this.id)">Pong</p>
-      <p id="PONG2" onClick="render(this.id)">Pong 2</p>
-      <p id="INVADERS" onClick="render(this.id)">Space Invaders</p>
-      <p id="MERLIN" onClick="render(this.id)">Merlin</p>
+      <div class="floppy" id="15PUZZLE" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">15 Puzzle</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="BLINKY" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Blinky</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="BLITZ" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Blitz</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="BRIX" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Brix</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="PONG" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Connect 4</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="GUESS" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Guess</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="HIDDEN" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Hidden</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="INVADERS" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Invaders</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="KALEID" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Kaleid</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="MAZE" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Maze</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="MERLIN" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Merlin</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="MISSILE" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Missile</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="PONG" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Pong</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="PONG2" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Pong 2</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="PUZZLE" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Puzzle</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="SYZYGY" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Syzygy</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="TANK" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Tank</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="TETRIS" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Tetris</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="TICTAC" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Tictac</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="UFO" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">UFO</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="VBRIX" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">VBrix</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="VERS" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Vers</div>
+        <div class="holes"></div>
+      </div>
+      <div class="floppy" id="WIPEOFF" onClick="render(this.id)">
+        <div class="chip"></div>
+        <div class="arrow"></div>
+        <div class="note">Wipeoff</div>
+        <div class="holes"></div>
+      </div>
     </div>
 
     <script type='text/javascript'>
