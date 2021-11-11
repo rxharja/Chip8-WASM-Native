@@ -82,7 +82,7 @@ int main(int argc, const char **argv)
       SDL_WINDOWPOS_UNDEFINED,
       CHIP8_WIDTH * CHIP8_WINDOW_SCALE,
       CHIP8_HEIGHT * CHIP8_WINDOW_SCALE,
-      SDL_WINDOW_SHOWN
+      SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI
   );
 
   renderer = SDL_CreateRenderer(window, -1, SDL_TEXTUREACCESS_TARGET);
@@ -100,7 +100,7 @@ static void renderLoop()
 #ifdef __EMSCRIPTEN__
     // 7 clock cycles per refresh seems to be the sweet spot for 
     // emulation running WASM
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 4; i++) {
 #endif
 
     SDL_Event event;
@@ -109,7 +109,7 @@ static void renderLoop()
       switch (event.type)
       {
         case SDL_QUIT:
-#ifdef EMSCRIPTEN
+#ifdef __EMSCRIPTEN__
           emscripten_cancel_main_loop();
 #else
           exit(0);
@@ -135,8 +135,10 @@ static void renderLoop()
           }
         }
         break;
-
       }
+#ifdef __EMSCRIPTEN__
+      emscripten_sleep(1);
+#endif
     }
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);

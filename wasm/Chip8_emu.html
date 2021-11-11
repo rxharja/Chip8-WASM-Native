@@ -57,7 +57,7 @@
         <div class="note">Brix</div>
         <div class="holes"></div>
       </div>
-      <div class="floppy" id="PONG" onClick="render(this.id)">
+      <div class="floppy" id="CONNECT4" onClick="render(this.id)">
         <div class="chip"></div>
         <div class="arrow"></div>
         <div class="note">Connect 4</div>
@@ -174,6 +174,7 @@
     </div>
 
     <script type='text/javascript'>
+
       let Module;
 
       const reset = () => {
@@ -184,12 +185,15 @@
             var canvas = document.getElementById('canvas');
             return canvas;
           })(),
+          doNotCaptureKeyboard: true
         };
+
       }
-      
-      const render = (id) => {
+
+      const render = async (id) => {
+        window.initModule = null;
         Module = null;
-        reset(Module);
+        reset();
         Module.arguments = [`./bin/c8games/${id}`];
         initModule(Module);
       }

@@ -2,7 +2,7 @@ INCLUDES=-I /usr/local/include/SDL2 -I ./include
 FLAGS=-g -D_GNU_SOURCE=1 -D_THREAD_SAFE
 OBJECTS=./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./build/chip8.o ./build/chip8_screen.o ./build/toot.o
 WASM_OBJECTS=./build/chip8_memory.html ./build/chip8_stack.html ./build/chip8_keyboard.html ./build/chip8.html ./build/chip8_screen.html ./build/toot.html
-EMCC_OPTIONS=-s WASM=1 -s USE_SDL=2 -s EXPORT_ES6=1 -s MODULARIZE=1 
+EMCC_OPTIONS=-s WASM=1 -s USE_SDL=2 -s EXPORT_ES6=1 -s MODULARIZE=1 -s ASYNCIFY 
 TESTS=./tests/chip8_keyboard_tests.o
 
 all: ${OBJECTS} 
