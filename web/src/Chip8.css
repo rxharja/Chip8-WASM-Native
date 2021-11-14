@@ -84,7 +84,7 @@ body {
   border-radius: 20px;
 }
 
-#canvas {
+.canvas {
   position: absolute;
   width: 64vmin;
   height: 32vmin;

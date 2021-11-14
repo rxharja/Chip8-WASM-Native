@@ -13,7 +13,7 @@
         <div class="monitor-inner">
           <div class="screen-cutout">
             <div class="screen">
-              <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+              <canvas id="canvas" class="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
             </div>
           </div>
           <div class="logo">
@@ -175,34 +175,31 @@
 
     <script type='text/javascript'>
 
-      let Module;
-
-      const reset = () => {
-        Module = {
-          preRun: [],
-          postRun: [],
-          canvas: (function() {
-            var canvas = document.getElementById('canvas');
-            return canvas;
-          })(),
-          doNotCaptureKeyboard: true
-        };
-
-      }
-
       const render = async (id) => {
-        window.initModule = null;
-        Module = null;
-        reset();
-        Module.arguments = [`./bin/c8games/${id}`];
-        initModule(Module);
+        Chip8.ccall("run", "number", ["string"], [`./bin/c8games/${id}`], {async: true})
       }
 
     </script>
     
     <script type="module">
-      import initModule from "./Chip8.js";
-      window.initModule = initModule;
+      import Chip8 from "./Chip8.js";
+
+      const Chip8Module = {
+        preRun: [],
+        postRun: [],
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
+          return canvas;
+        })(),
+        doNotCaptureKeyboard: true
+      };
+
+      Chip8(Chip8Module);
+
+      Chip8Module.onRuntimeInitialized = () => {
+        Chip8Module.ccall("run", "number", ["string"], ["./bin/c8games/PONG2"], {async: true}); 
+      }
+      window.Chip8 = Chip8Module;
     </script>
         
   </body>
