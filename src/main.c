@@ -28,11 +28,21 @@ const char keyboard_map[CHIP8_TOTAL_KEYS] = {
   SDLK_c, SDLK_d, SDLK_e, SDLK_f,
 };
 
+int run(const char *filename);
+
+int load_file(const char* filename);
+
 static void renderLoop();
 
+int init(int argc, const char **argv);
+
+#ifdef __EMSCRIPTEN__
+void emscripten_reload(const char* filename);
+#endif
+
+#ifndef __EMSCRIPTEN__
 int main(int argc, const char **argv)
 {
-
   if (argc < 2) {
     printf("You must provide a file to load.\n");
     return -1;
@@ -40,59 +50,42 @@ int main(int argc, const char **argv)
 
   const char* filename = argv[1];
 
-  printf("The file name to load is: %s\n", filename);
+  return run(filename);
+}
+#endif
 
-  FILE* f = fopen(filename, "rb");
+int run(const char *filename)
+{
+#ifdef __EMSCRIPTEN__
+  emscripten_cancel_main_loop();
+#endif
 
-  // open passed in file 
-  if (!f) {
-    printf("failed to open the file\n");
+  if (load_file(filename) == -1) {
     return -1;
   }
 
-  // seek to the end of the file
-  fseek(f, 0, SEEK_END);
-
-  // find position and set it to the size
-  long size = ftell(f);
-
-  // return back to start of file to proceed reading
-  fseek(f, 0, SEEK_SET);
-
-  char buf[size];
-
-  if (fread(buf, size, 1, f) != 1) {
-    printf("Failed to read from file.\n");
-    return -1;
-  }
-
-  if (fclose(f) == EOF) {
-    printf("failed to close the file\n");
-    return -1;
-  }
-
-  chip8_init(&chip8);
-  chip8_load(&chip8, buf, size);
   chip8_keyboard_set_map(&chip8.keyboard, keyboard_map);
 
   SDL_Init(SDL_INIT_EVERYTHING);
+
   SDL_Window *window = SDL_CreateWindow(
       EMULATOR_WINDOW_TITLE,
       SDL_WINDOWPOS_UNDEFINED,
       SDL_WINDOWPOS_UNDEFINED,
       CHIP8_WIDTH * CHIP8_WINDOW_SCALE,
       CHIP8_HEIGHT * CHIP8_WINDOW_SCALE,
-      SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI
+      SDL_WINDOW_OPENGL 
   );
 
   renderer = SDL_CreateRenderer(window, -1, SDL_TEXTUREACCESS_TARGET);
 
 #ifdef __EMSCRIPTEN__
-  emscripten_set_main_loop(renderLoop, 0, 1);
+  emscripten_set_main_loop(renderLoop, 0, 0);
 #else
   while (1) { renderLoop(); }
 #endif
 
+  return 1;
 }
 
 static void renderLoop()
@@ -100,7 +93,7 @@ static void renderLoop()
 #ifdef __EMSCRIPTEN__
     // 7 clock cycles per refresh seems to be the sweet spot for 
     // emulation running WASM
-    for (int i = 0; i < 4; i++) {
+    /* for (int i = 0; i < 7; i++) { */
 #endif
 
     SDL_Event event;
@@ -180,7 +173,55 @@ static void renderLoop()
 
       chip8_exec(&chip8, opcode);
 #ifdef __EMSCRIPTEN__
-    }
+    /* } */
 #endif
 
+}
+
+#ifdef __EMSCRIPTEN__
+void emscripten_reload(const char* filename)
+{
+  emscripten_cancel_main_loop();
+  load_file(filename);
+  emscripten_set_main_loop(renderLoop, 0, 0);
+}
+
+#endif
+int load_file(const char* filename)
+{
+  printf("The file name to load is: %s\n", filename);
+
+  FILE* f = fopen(filename, "rb");
+
+  // open passed in file 
+  if (!f) {
+    printf("failed to open the file\n");
+    return -1;
+  }
+
+  // seek to the end of the file
+  fseek(f, 0, SEEK_END);
+
+  // find position and set it to the size
+  long size = ftell(f);
+
+  // return back to start of file to proceed reading
+  fseek(f, 0, SEEK_SET);
+
+  char buf[size];
+
+  if (fread(buf, size, 1, f) != 1) {
+    printf("Failed to read from file.\n");
+    return -1;
+  }
+
+  if (fclose(f) == EOF) {
+    printf("failed to close the file\n");
+    return -1;
+  }
+
+  chip8_init(&chip8);
+  chip8_load(&chip8, buf, size);
+
+  return 0;
 }
