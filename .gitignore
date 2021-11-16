@@ -7,6 +7,9 @@ DSL/
 .cache/
 *.dSYM/
 
+#packaging files
+yarn.lock
+
 #hidden files
 .DS_STORE
 
