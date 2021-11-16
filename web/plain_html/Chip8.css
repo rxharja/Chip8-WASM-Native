@@ -1,0 +1,421 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F5DDDD;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.macintosh {
+  position: absolute;
+  display: block;
+  width: 72vmin;
+  height: 85vmin;
+  bottom: 0;
+  left: 5vmin;
+  position: absolute;
+  box-shadow: 0 80px 60px -60px rgba(0,0,0,0.4);
+}
+
+.monitor {
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 82vmin;
+  border-radius: 15px;
+  background-color: #DDDBC2;
+  position: absolute;
+  background-image: lineear-gradient(
+    #DDDBC2, #DFDAC4
+  );
+  background-image: conic-gradient(
+    #DDDBC2 0 10.5%, #ECECD5 11% 11.5%, #CECDAF 12% 38%, #C8C4A7 39% 61.5%, #C7C3A6 62% 88%, #DFDAC4 88.5% 89%, #DDDBC2 89.25%
+  ); /* Not supported everywhere :( */
+  box-shadow: 0 60px 20px -20px rgba(142,137,97,0.5);
+}
+
+.monitor-inner {
+  display: block;
+  width: 70vmin;
+  height: 72vmin;
+  background-image: linear-gradient(#CAC6A9, #CFCEB0);
+  margin: auto;
+  position: absolute;
+  top: 22px;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+}
+
+.screen-cutout {
+  display: block;
+  width: 68vmin;
+  height: 45vmin;
+  background-color: #DDDBC2;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20px;
+  border-radius: 5px;
+  background-image: linear-gradient(
+    #938F6A, #E0DFC3
+  ); 
+  background-image: conic-gradient(
+    #938F6A 12.5%, #B5B293 15.5% 33%, #E0DFC3 34% 65.5%, #C2C1A2 66.5% 83.5%, #938F6A 86.5%
+  ); 
+}
+
+.screen {
+  display: block;
+  width: 64vmin;
+  height: 39vmin;
+  background-color: #000;
+  margin: auto;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  border-radius: 20px;
+}
+
+.canvas {
+  position: absolute;
+  width: 64vmin;
+  height: 32vmin;
+  top: 2.5vmin;
+  border-radius: 5%;
+}
+
+.opening {
+  display: block;
+  width: 30vmin;
+  height: 3vmin;
+  background-image: linear-gradient(
+    #BEBB9C, #CAC8A7 74.5% 75.5%);
+  background-image: conic-gradient(
+    #BEBB9C 0% 23.5%, #C7C2A2 24.5% 25%, #DCD8BD 26% 73.5%, #CAC8A7 74.5% 75.5%, #BEBB9C 76.5%);
+  position: absolute;
+  bottom: 55px;
+  right: 21px;
+  border-radius: 4px;
+}
+
+.opening-inner {
+  display: block;
+  width: 25vmin;
+  height: 2vmin;
+  background-color: #181914;
+  border-radius: 2px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3.5px;
+}
+
+.foot {
+  display: block;
+  width: 100%;
+  height: 16vmin;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: 7px;
+  background-image: linear-gradient(#BBB497, #C1BE9F);
+  box-shadow: 14px 0 3px -7px #CCCAB1 inset,
+    -14px 0 3px -7px #CECDB1 inset,
+    0 32px 3px -7px #C1BE9F inset,
+    0 -6px 3px -4px #AEAA87 inset; 
+}
+
+.inset {
+  display: inline;
+  width: 4vmin;
+  height: 4vmin;
+  background-color: #C3BEA0;
+  position: absolute;
+  bottom: 4vmin;
+  left: 7vmin;
+  border-radius: 2px;
+  box-shadow: 0 0 2px #C9C3A3 inset,
+    0 0px 2px 1px #BCB694;
+}
+
+.cable-container {
+  display: block;
+  width: 12vmin;
+  height: 6vmin;
+  background-color: #C3BEA0;
+  position: absolute;
+  right: 6vmin;
+  bottom: 3vmin;
+  border-radius: 3px;
+  box-shadow: 0 2px 1px -1px #D0CBAE inset,
+    4px 0 1px -1px #BAB492 inset,
+    -5px 0 2px -2px #A8A281 inset,
+    0 -4px 2px -3px #ADA88B inset;;
+}
+
+.cable-hole {
+  display: block;
+  width: 3.6vmin;
+  height: 4vmin;
+  background-color: #848580;
+  position: absolute;
+  top: 1vmin;
+  right: 1.4vmin;
+  border-radius: 3px;
+  box-shadow: 0 -4px 0.5px -0.5px rgba(25,25,25,0.2) inset,
+    -2px 0 0.5px -0.5px rgba(25,25,25,0.2) inset,
+    2px 0 0.5px -0.5px rgba(25,25,25,0.2) inset;
+  background-image: linear-gradient(
+    #848580 20%,
+    transparent 20% 80%,
+    #848580 80%
+  ), linear-gradient(
+    90deg,
+    transparent 30%,
+    #181914 30% 70%,
+    transparent 70%
+  );
+}
+
+
+.floppy {
+  float: right;
+  position: absolute;
+  left: 80vmin;
+  bottom: 0vmin;
+  width: 20vmin;
+  height: 21vmin;
+  background-color: #000;
+  border-radius: 3%;
+  animation-name: down;
+  animation-duration: 0.3s;
+  clip-path: polygon(85% 0, 100% 16%, 100% 100%, 0 100%, 0 0);
+}
+
+.floppy::before {
+  content: "";
+  position: absolute;
+  margin-left: 2vmin;
+  width: 13vmin;
+  height: 6vmin;
+  opacity: 0.35;
+  background-color: #000;
+  z-index: 1;
+}
+
+.floppy::after {
+  content:"";
+  position: fixed;
+  background-color: #706F6F;
+  width: 20vmin;
+  height: 21vmin;
+  opacity: 0.35;
+  border-radius: 3%;
+}
+
+@keyframes lift {
+  from { bottom: 5vmin; }
+  to { bottom: 15vmin; }
+}
+
+@keyframes down {
+  from { bottom: 15vmin; }
+  to { bottom: 5vmin; }
+}
+
+.floppy:hover {
+  bottom: 15vmin;
+  animation-name: lift;
+  animation-duration: 0.3s;
+  tranform: rotate(0.5turn) translateY(10vmin);
+}
+
+.chip {
+  position: absolute;
+  background: #FFFFFF;
+  margin-left: 5vmin;
+  background: linear-gradient(90deg,#FFFFFF 20%, #DCDCDC 79%);
+  width: 10vmin;
+  height: 6vmin;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  z-index: 1;
+}
+
+.chip::before {
+  content: "";
+  position: absolute;
+  margin-top: .6vmin;
+  margin-left: 6vmin;
+  width: 2.5vmin;
+  height: 5vmin;
+  background: #000;
+  opacity: 0.9;
+  border-radius: 3%;
+}
+
+.arrow {
+  position: absolute;
+  background: #000;
+  width: 1vmin;
+  height: 1.75vmin;
+  top: 1.25vmin;
+  left: .5vmin;
+  z-index: 1;
+  clip-path: polygon(0 46%, 51% 0, 100% 45%, 70% 45%, 70% 100%, 33% 100%, 34% 45%);
+}
+
+.note {
+  position: absolute;
+  background: #fff;
+  width: 15vmin;
+  height: 10.5vmin;
+  bottom: 2vmin;
+  left: 2.5vmin;
+  border-radius: 5%;
+  z-index: 1;
+}
+
+.note::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  background: #CE1212;
+  width: 15vmin;
+  height: 2.5vmin;
+}
+
+.note::after {
+  content: "";
+  position: absolute;
+  background: #CE1212;
+  width: 14vmin;
+  height: .12vmin;
+  bottom: 4vmin;
+  left: 0.5vmin;
+  box-shadow: 0 -1.5vmin 0 #CE1212, 0 -3.25vmin 0 #CE1212, 0 -4.75vmin 0 #CE1212;
+}
+
+#15PUZZLE {
+  background-color: #142F43;
+  left: 80vmin;
+}
+#BLINKY {
+  background-color: #FFAB4C;
+  left: 85vmin;
+}
+
+#BLITZ {
+  background-color: #B000B9;
+  left: 90vmin;
+}
+
+#BRIX {
+  background-color: #142F43;
+  left: 95vmin;
+}
+
+#CONNECT4 {
+  background-color: #142F43;
+  left: 100vmin;
+}
+
+#GUESS {
+  background-color: #142F43;
+  left: 105vmin;
+}
+
+#HIDDEN {
+  background-color: #142F43;
+  left: 110vmin;
+}
+
+#INVADERS { 
+  background-color: #142F43;
+  left: 115vmin;
+}
+
+#KALEID { 
+  background-color: #142F43;
+  left: 120vmin;
+}
+
+#MAZE { 
+  background-color: #142F43;
+  left: 125vmin;
+}
+
+#MERLIN { 
+  background-color: #142F43;
+  left: 130vmin;
+}
+
+#MISSILE { 
+  background-color: #142F43;
+  left: 135vmin;
+}
+
+#PONG { 
+  background-color: #142F43;
+  left: 140vmin;
+}
+
+#PONG2 { 
+  background-color: #142F43;
+  left: 145vmin;
+}
+
+#PUZZLE { 
+  background-color: #142F43;
+  left: 150vmin;
+}
+
+#SYZYGY { 
+  background-color: #142F43;
+  left: 155vmin;
+}
+
+#TANK { 
+  background-color: #142F43;
+  left: 160vmin;
+}
+
+#TETRIS { 
+  background-color: #142F43;
+  left: 165vmin;
+}
+
+#TICTAC { 
+  background-color: #142F43;
+  left: 170vmin;
+}
+
+#UFO { 
+  background-color: #142F43;
+  left: 175vmin;
+}
+
+#VBRIX { 
+  background-color: #142F43;
+  left: 180vmin;
+}
+
+#VERS { 
+  background-color: #142F43;
+  left: 185vmin;
+}
+
+#WIPEOFF { 
+  background-color: #142F43;
+  left: 190vmin;
+}
