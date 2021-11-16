@@ -1,7 +1,6 @@
 # directories
 node_modules/
 .vscode/
-bin/
 build/
 DSL/
 .cache/
