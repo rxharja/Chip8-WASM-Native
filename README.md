@@ -7,7 +7,7 @@ A CHIP-8 Emulator built entirely in the C programming language which can be comp
 
 Currently the only supported native build for the emulator is for MacOS
 
-###Dependencies:
+### Dependencies:
 The main dependency for the project is SDL2. Installing SDL2 on MacOS can be done via
 
 ```
